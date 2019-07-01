@@ -1,26 +1,38 @@
-import React from 'react';
+import React,{Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+class App extends Component {
+  state = {
+    contador: 0
+  }
+  contador = 10
+  increment = () =>{
+    this.setState( {contador : this.state.contador + 1} );
+    console.log(this.state.contador);
+  }
+  decrement = () =>{
+    this.setState({ contador: this.state.contador - 1});
+    console.log(this.state.contador);
+  }
+
+  clear = () =>{
+    this.setState({
+      contador: 0
+    })
+  }
+  render(){
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        Contador: {this.state.contador}
+        <button onClick={this.increment}>+</button>
+        <button onClick={this.decrement}>-</button>
+        <button onClick={this.clear}>Clear</button>
+        </header>
     </div>
   );
+}
 }
 
 export default App;
